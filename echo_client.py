@@ -18,8 +18,6 @@ def client(msg, log_buffer=sys.stderr):
             msg_received += len(chunk)
             print >>log_buffer, 'received "{0}"'.format(chunk)
     finally:
-        # TODO: after you break out of the loop receiving echoed chunks from
-        #       the server you will want to close your client socket.
         print >>log_buffer, 'closing socket'
         sock.close()
 

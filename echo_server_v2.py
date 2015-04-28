@@ -6,6 +6,7 @@
 
 import socket
 import sys
+import select
 
 
 def server(log_buffer=sys.stderr):
@@ -16,13 +17,15 @@ def server(log_buffer=sys.stderr):
     print >>log_buffer, "making a server on {0}:{1}".format(*address)
 
     sock.bind(address)
-    sock.listen(1)
+    sock.listen(5)
 
     try:
         while True:
-            print >>log_buffer, 'waiting for a connection'
+            print >>log_buffer, 'waiting for a connections'
 
             conn, addr = sock.accept()
+            # http://ilab.cs.byu.edu/python/select/echoserver.html
+            # read up on this tomorrow
             try:
                 print >>log_buffer, 'connection - {0}:{1}'.format(*addr)
 
